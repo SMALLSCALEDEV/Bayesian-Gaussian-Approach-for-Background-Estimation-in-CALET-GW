@@ -1,0 +1,12 @@
+Example for newbies - :)
+
+from calet_gw_background.utils import make_time_series
+from calet_gw_background.pipeline import run_pipeline
+import numpy as np
+
+times, counts = make_time_series()
+template = np.exp(-0.5*((times-50)/2)**2)  # toy Gaussian signal
+lam_grid = np.linspace(0, 20, 200)
+
+results = run_pipeline(times, counts, template, n_obs=np.sum(counts), lam_grid=lam_grid)
+print(results)
